@@ -34,6 +34,46 @@ class gameService {
             console.log(error)
         }
     }
+
+    // Método para excluir um jogo
+    async Delete(id) {
+        try {
+            // Excluindo o jogo pelo id
+            await Game.findByIdAndDelete(id)
+            console.log(`Game com a id: ${id} foi deletado.`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Método para alterar um jogo
+    async Update(id, title, platform, year, price) {
+        try {
+            const updatedGame = await Game.findByIdAndUpdate(id, {
+                title, 
+                platform,
+                year,
+                price
+            },
+                { new: true }
+            )
+            console.log(`O jogo com o ID ${id} foi alterado.`)
+            return updatedGame
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Método para listar um jogo único
+    async getOne(id) {
+        try {
+            const game = await Game.findOne({ _id: id })
+            return game
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
+
 // Exportando a classe
 export default new gameService()
