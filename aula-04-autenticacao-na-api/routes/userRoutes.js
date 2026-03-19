@@ -4,8 +4,12 @@ import express from 'express';
 const userRoutes = express.Router();
 // Importando o controller de usuários
 import userController from '../controllers/userController.js';
+// import { use } from 'react';
 
 // Endpoint para CADASTRAR um usuário
 userRoutes.post("/user", userController.createUser);
+
+// Endpoint para LOGAR um usuário
+userRoutes.post("/auth", userController.loginUser)
 
 export default userRoutes;
